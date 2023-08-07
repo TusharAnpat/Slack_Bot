@@ -16,10 +16,10 @@ rtm.on('ready', async () => {
 
 rtm.on('slack_event', async (eventType, event) => {
     if (event && event.type === 'message'){
-        if (event.text === '!hello') {
+        if (event.text === 'hello') {
             hello(event.channel, event.user)
         }
-        if (event.text === '!time') {
+        if (event.text === 'time') {
             time(event.channel, event.currentTime,event.Date)
         }
     }
@@ -35,6 +35,10 @@ function time (channelId) {
     const currentTime = new Date().toLocaleString();
 
     sendMessage(channelId, `Current data and time is ${currentTime}`)
+}
+
+function errorFunc (channelId) {
+    sendMessage(channelId, `Please enter correct command!`)
 }
 
 async function sendMessage(channel, message) {
